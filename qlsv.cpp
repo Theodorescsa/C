@@ -26,12 +26,22 @@ struct sinhvien* scanf_sinhvien(int n) {
     }
 
     for (int i = 0; i < n; i++) {
+ 
         printf("Moi nhap ho va ten cua sinh vien thu %d: ", i + 1);
         scanf("%s", list_sv[i].ho_ten);
 
         printf("Moi nhap ma so sinh vien cua sinh vien: ");
         scanf("%s", list_sv[i].masosv);
-
+        for (int j = 0; j <= i; j++)
+        {
+            if (strcmp(list_sv[j].masosv,list_sv[i].masosv) == 0 && i > 0 && j!=i) {
+                printf("Ma so sinh vien da ton tai\n");
+                printf("Moi nhap lai ma so sinh vien cua sinh vien: ");
+                scanf("%s", list_sv[i].masosv);
+                j = -1;
+            }
+        }
+        
         printf("Moi nhap diem toan cua sinh vien: ");
         scanf("%f", &list_sv[i].diemtoan);
 
@@ -57,7 +67,7 @@ void add_sinhvien(struct sinhvien arr[], int n) {
             printf("Ma so sinh vien da ton tai\n");
             printf("Moi nhap lai ma so sinh vien cua sinh vien: ");
             scanf("%s", arr[n].masosv);
-            i = -1; // Reset lại vòng lặp để kiểm tra lại từ đầu
+            i = -1; 
         }
     }
 
