@@ -130,11 +130,17 @@ void print_info_sinhvien(struct sinhvien arr[], int n) {
 }
 void print_sinhvien(struct sinhvien arr[], int n) {
     for (int i = 0; i < n; i++) {
+        if (arr[i].ho_ten[0] == '\0')
+        {
+            continue;
+        } else {
+        
         printf("Ho va ten: %s\n", arr[i].ho_ten);
         printf("Ma so sinh vien: %s\n", arr[i].masosv);
         printf("Diem toan: %.2f\n", arr[i].diemtoan);
         printf("Diem van: %.2f\n", arr[i].diemvan);
         printf("Diem anh van: %.2f\n\n", arr[i].diemanhvan);
+        }
     }
 }
 void edit_sinhvien(struct sinhvien arr[],int n) {
