@@ -171,29 +171,29 @@ void edit_sinhvien(struct sinhvien arr[],int n) {
         printf("Khong tim thay sinh vien co ma so %s\n", mssv);
     }
 }
-void delete_sinhvien(struct sinhvien arr[], int n) {
-    char mssv[6];
+void delete_sinhvien(struct sinhvien arr[], int *n) {
+    char mssv[10];
     int found = 0;
     printf("Moi nhap ma so sinh vien cua sinh vien muon xoa: ");
     scanf("%s", mssv);
-    for (int i;i < n;i++) {
+    
+    for (int i = 0; i < *n; i++) {
         if (strcmp(arr[i].masosv, mssv) == 0) {
-            arr[i].ho_ten[0] = '\0';
-
-            arr[i].masosv[0] = '\0';
-
-            arr[i].diemtoan = -1;
-
-            arr[i].diemvan = -1;
-
-            arr[i].diemanhvan = -1;
+            for (int j = i; j < *n - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+            (*n)--; 
             found = 1;
+            printf("Da xoa sinh vien co ma so %s\n", mssv);
+            break;
         }
     }
-          if (!found) {
+
+    if (!found) {
         printf("Khong tim thay sinh vien co ma so %s\n", mssv);
     }
 }
+
 void average_sinhvien(struct sinhvien arr[], int n) {
     char mssv[6];
     double diemtrungbinh = 0;
@@ -299,7 +299,7 @@ void menu(struct sinhvien *list, int quantity) {
         break;
     case 6:
         printf("Xoa thong tin sinh vien:\n");
-        delete_sinhvien(list, quantity);
+        delete_sinhvien(list, &quantity);
         break;
     case 7:
         printf("Tinh diem trung binh cua mot sinh vien:\n");
